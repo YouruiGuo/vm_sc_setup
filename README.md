@@ -5,18 +5,16 @@
 
 ### Setup
 
-- If you want more syntax highlighting, format your code like this:
-
-> update and install this package first
+- Run the script init.sh
 
 ```shell
 $ chmod u+x init.sh
 $ ./init.sh
 ```
 
-> The password of VM is: vagrant
-> after login, run supercollider and the path of file is ~/soundscape_experiment/play2.scd.
-> Open the terminal and:
+- After the VM is rebooted, you can login with the password vagrant.
+- Run supercollider and the path of file is ~/soundscape_experiment/play2.scd.
+- Open the terminal and:
 
 ```shell
 $ jack_control start

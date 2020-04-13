@@ -14,7 +14,8 @@ $ chmod u+x init.sh
 $ ./init.sh
 ```
 
-> The password of VM is: vagrant, after login, run supercollider and the path of file is ~/soundscape_experiment/play2.scd.
+> The password of VM is: vagrant
+> after login, run supercollider and the path of file is ~/soundscape_experiment/play2.scd.
 > Open the terminal and:
 
 ```shell

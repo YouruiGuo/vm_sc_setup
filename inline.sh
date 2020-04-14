@@ -34,8 +34,8 @@ sudo modprobe snd-hda-intel
 sleep 2
 sudo amixer -c 0 set Master playback 100% unmute
 
-echo -e '@audio - rtprio 99\n@audio - memlock unlimited\n@audio - nice -10' | sudo tee -a /etc/security/limits.conf
-echo -e '@audio - rtprio 99\n@audio - memlock unlimited\n@audio - nice -10' | sudo tee -a /etc/security/limits.d/audio.conf
+echo -e '@audio - rtprio 99\n@audio - memlock unlimited\n#@audio - nice -10' | sudo tee -a /etc/security/limits.conf
+echo -e '@audio - rtprio 99\n@audio - memlock unlimited\n#@audio - nice -10' | sudo tee -a /etc/security/limits.d/audio.conf
 echo -e 'load-module module-jack-sink channels=2\nload-module module-jack-source channels=2\nset-default-sink jack_out' | sudo tee -a /etc/pulse/default.pa
 
 sudo sed -i 's/; autospawn = yes/autospawn = no/g' /etc/pulse/client.conf

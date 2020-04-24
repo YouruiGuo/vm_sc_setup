@@ -21,12 +21,12 @@ config.ssh.forward_x11 = true # useful since some audio testing programs use x11
       audio = case RUBY_PLATFORM
         when /darwin|mac os/;                             'coreaudio'
         when /mswin|msys|mingw|cygwin|bccwin|wince|emc/;  'dsound'
-        when /linux/;                                     'alsa'
+        when /linux/;                                     'pulse'
       end
 
       vb.customize [ 'modifyvm',  :id,
         '--audio',                audio,
-        '--audiocontroller',      'hda',
+        '--audiocontroller',      'ac97',
       ]
 end
  

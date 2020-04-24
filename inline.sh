@@ -13,7 +13,7 @@ sudo VBoxClient --checkhostversion
 sudo VBoxClient --seamless
 
 sudo apt-get -yq install python2.7 python-pip unzip alsa-base alsa-utils git
-sudo DEBIAN_FRONTEND=noninteractive apt-get -yq install build-essential libsndfile1-dev libasound2-dev libavahi-client-dev libicu-dev libreadline6-dev libfftw3-dev libxt-dev libudev-dev pkg-config git cmake qt5-default qt5-qmake qttools5-dev qttools5-dev-tools qtdeclarative5-dev qtpositioning5-dev libqt5sensors5-dev libqt5opengl5-dev qtwebengine5-dev libqt5svg5-dev libqt5websockets5-dev
+sudo DEBIAN_FRONTEND=noninteractive apt-get -yq install build-essential libsndfile1-dev libasound2-dev libavahi-client-dev libicu-dev libreadline6-dev libfftw3-dev libxt-dev libudev-dev pkg-config git cmake qt5-default qt5-qmake qttools5-dev qttools5-dev-tools qtdeclarative5-dev qtpositioning5-dev libqt5sensors5-dev libqt5opengl5-dev qtwebengine5-dev libqt5svg5-dev libqt5websockets5-dev python-dbus
 sudo DEBIAN_FRONTEND=noninteractive apt-get -yq install libjack-jackd2-dev
 pip install pynput keyboard numpy pyOSC gdown
 
@@ -28,17 +28,25 @@ sudo add-apt-repository -y ppa:supercollider/ppa
 sudo apt-get update
 sudo DEBIAN_FRONTEND=noninteractive apt-get -yq install supercollider supercollider-ide supercollider-server supercollider-dev 
 
-echo -e 'pcm.!default {\n  type plug\n  slave.pcm "hw:0,1"\n}' | sudo tee >/dev/null /etc/asound.conf
-sudo modprobe snd
-sudo modprobe snd-hda-intel
-sleep 2
-sudo amixer -c 0 set Master playback 100% unmute
+output="$(aplay -L | grep CARD= -m1)"
+string=$(echo $output | cut -d'=' -f 2)
+echo "${string}"
 
-echo -e '@audio - rtprio 99\n@audio - memlock unlimited\n#@audio - nice -10' | sudo tee -a /etc/security/limits.conf
-echo -e '@audio - rtprio 99\n@audio - memlock unlimited\n#@audio - nice -10' | sudo tee -a /etc/security/limits.d/audio.conf
+echo -e 'pcm.!default {\n  type plug\n  slave.pcm "hw:'${string}'"\n}' | sudo tee >/dev/null /etc/asound.conf
+#sudo modprobe snd
+#sudo modprobe snd-hda-intel
+#sleep 2
+#sudo amixer -c 0 set Master playback 100% unmute
+
+echo -e '@audio - rtprio 99\n@audio - memlock unlimited\n@audio - nice -10' | sudo tee -a /etc/security/limits.conf
+echo -e '@audio - rtprio 99\n@audio - memlock unlimited\n@audio - nice -10' | sudo tee -a /etc/security/limits.d/audio.conf
 echo -e 'load-module module-jack-sink channels=2\nload-module module-jack-source channels=2\nset-default-sink jack_out' | sudo tee -a /etc/pulse/default.pa
 
 sudo sed -i 's/; autospawn = yes/autospawn = no/g' /etc/pulse/client.conf
+
+echo -e '#!/bin/bash\njack_control start\njack_control ds alsa\njack_control dps device hw:'${string}'\njack_control dps rate 48000\njack_control dps nperiods 2\njack_control dps period 4096\nsleep 10' | sudo tee -a ~/start_jack.sh
+echo './start_jack.sh' | sudo tee -a ~/.bashrc
+sudo chmod u+x ~/start_jack.sh
 
 groupadd audio
 sudo usermod -a -G audio vagrant

@@ -47,9 +47,11 @@ echo -e 'load-module module-jack-sink channels=2\nload-module module-jack-source
 
 sudo sed -i 's/; autospawn = yes/autospawn = no/g' /etc/pulse/client.conf
 
-echo -e '#!/bin/bash\njack_control ds alsa\njack_control dps device hw:'${string}'\njack_control dps rate 48000\njack_control dps nperiods 2\njack_control dps period 4096\nsleep 5\njack_control start\n' >> /home/vagrant/start_jack.sh
-echo -e 'sudo chmod u+x /home/vagrant/start_jack.sh \n sudo /home/vagrant/start_jack.sh' >> ~/.bashrc
+#echo -e '#!/bin/bash\njack_control ds alsa\njack_control dps device hw:'${string}'\njack_control dps rate 48000\njack_control dps nperiods 2\njack_control dps period 4096\nsleep 2\njack_control start\n' >> /home/vagrant/start_jack.sh
+#echo -e 'sudo chmod u+x /home/vagrant/start_jack.sh \n sudo /home/vagrant/start_jack.sh' >> ~/.bashrc
 
+
+sed -i 's/hw:/hw:'${string}'/g' /vagrant/conf.xml
 
 groupadd audio
 sudo usermod -a -G audio vagrant

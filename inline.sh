@@ -22,6 +22,9 @@ cd /home/vagrant && git clone https://github.com/YouruiGuo/soundscape_experiment
 cd /home/vagrant/soundscape_experiment && cp /vagrant/download.py ./ && sudo python download.py
 mkdir /home/vagrant/soundscape_experiment/audio && sudo unzip audio.zip -d /home/vagrant/soundscape_experiment/audio
 
+output="$(aplay -L | grep CARD= -m1)"
+string=$(echo $output | cut -d'=' -f 2)
+echo "${string}"
 #sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys FABAEF95
 
 sudo add-apt-repository -y ppa:supercollider/ppa
@@ -44,9 +47,9 @@ echo -e 'load-module module-jack-sink channels=2\nload-module module-jack-source
 
 sudo sed -i 's/; autospawn = yes/autospawn = no/g' /etc/pulse/client.conf
 
-echo -e '#!/bin/bash\njack_control start\njack_control ds alsa\njack_control dps device hw:'${string}'\njack_control dps rate 48000\njack_control dps nperiods 2\njack_control dps period 4096\nsleep 10' | sudo tee -a ~/start_jack.sh
-echo './start_jack.sh' | sudo tee -a ~/.bashrc
-sudo chmod u+x ~/start_jack.sh
+echo -e '#!/bin/bash\njack_control ds alsa\njack_control dps device hw:'${string}'\njack_control dps rate 48000\njack_control dps nperiods 2\njack_control dps period 4096\nsleep 5\njack_control start\n' >> /home/vagrant/start_jack.sh
+echo -e 'sudo chmod u+x /home/vagrant/start_jack.sh \n sudo /home/vagrant/start_jack.sh' >> ~/.bashrc
+
 
 groupadd audio
 sudo usermod -a -G audio vagrant

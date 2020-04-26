@@ -15,7 +15,7 @@ sudo VBoxClient --seamless
 sudo apt-get -yq install python2.7 python-pip unzip alsa-base alsa-utils git
 sudo DEBIAN_FRONTEND=noninteractive apt-get -yq install build-essential libsndfile1-dev libasound2-dev libavahi-client-dev libicu-dev libreadline6-dev libfftw3-dev libxt-dev libudev-dev pkg-config git cmake qt5-default qt5-qmake qttools5-dev qttools5-dev-tools qtdeclarative5-dev qtpositioning5-dev libqt5sensors5-dev libqt5opengl5-dev qtwebengine5-dev libqt5svg5-dev libqt5websockets5-dev python-dbus
 sudo DEBIAN_FRONTEND=noninteractive apt-get -yq install libjack-jackd2-dev
-pip install pynput keyboard numpy pyOSC gdown
+pip install pynput keyboard numpy pyOSC gdown requests
 
 
 cd /home/vagrant && git clone https://github.com/YouruiGuo/soundscape_experiment.git
@@ -48,10 +48,12 @@ echo -e 'load-module module-jack-sink channels=2\nload-module module-jack-source
 sudo sed -i 's/; autospawn = yes/autospawn = no/g' /etc/pulse/client.conf
 
 #echo -e '#!/bin/bash\njack_control ds alsa\njack_control dps device hw:'${string}'\njack_control dps rate 48000\njack_control dps nperiods 2\njack_control dps period 4096\nsleep 2\njack_control start\n' >> /home/vagrant/start_jack.sh
+
 #echo -e 'sudo chmod u+x /home/vagrant/start_jack.sh \n sudo /home/vagrant/start_jack.sh' >> ~/.bashrc
 
 
 sed -i 's/hw:/hw:'${string}'/g' /vagrant/conf.xml
+
 
 groupadd audio
 sudo usermod -a -G audio vagrant

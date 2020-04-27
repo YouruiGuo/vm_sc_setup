@@ -21,9 +21,13 @@ $ ./init.sh
 ```
 
 - After the VM is rebooted, you can login with the password vagrant.
+- Open the terminal and:
+```shell
+$ ./start_jack.sh
+```
 - Launch supercollider and the path of the SC file is ~/soundscape_experiment/play2.scd.
 - Put the cursor at the first line and execute it using ctrl+enter, then move the cursor to the next line and execute it with ctrl+enter.
-- Open the terminal and:
+- Go to the terminal and:
 
 ```shell
 $ cd ~/soundscape_experiment
@@ -53,15 +57,27 @@ $ jack_control start
 $ cat ~/.log/jack/jackdbus.log
 ```
 **Hearing intermittent sound after running supercollider:**
-- Change the periods per buffer of jack server to a smaller number such as 1024 or 512.
-```shell
-$ jack_control dps period 1024
-$ jack_control stop
-$ jack_control start
-```
-- Modify the file ~/start_jack.sh
+- Modify the file ~/start_jack.sh and change the frames per periods to a smaller number such as 1024 or 512.
 ```
 jack_control dps period 1024
+```
+- Go to the terminal and:
+```shell
+$ cd ~
+$ ./start_jack.sh
+```
+**Keep receiving errors when running start_jack.sh**
+- Make sure that all jack processes are killed, and then open qjackctl.
+```shell
+$ qjackctl
+```
+- Go to the setup, change the interface from default to an available audio device, then change the frames/period to 1024 and click ok.
+- Click start to start jack server.
+- If you still receive the same error, then kill all jack processes and:
+```shell
+$ rm ~/.config/jack/conf.xml
+$ sudo cp /vagrant/conf.xml ~/.config/jack/
+$ jack_control start
 ```
 
 ## Notes

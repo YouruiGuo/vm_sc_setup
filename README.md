@@ -9,8 +9,12 @@ $ cd vm_sc_setup
 
 ## Setup
 
-- Run the script init.sh
-
+- Run the script init.sh. For mac,
+```shell
+$ chmod u+x mac_init.sh
+$ ./mac_init.sh
+```
+For linux,
 ```shell
 $ chmod u+x init.sh
 $ ./init.sh
@@ -32,16 +36,16 @@ $ python runner.py
 
 > Unable to boot the server in supercollider:
 - Open terminal and type:
-```
+```shell
 $ ps aux | grep jack
 ```
 - If there are more than one processes running jack, kill all processes and restart jack server:
-```
+```shell
 $ kill -9 #proc
 $ jack_control start
 ```
 - If it is still not working, check the log of jack server:
-```
+```shell
 $ cat ~/.log/jack/jackdbus.log
 ```
 
@@ -49,7 +53,7 @@ $ cat ~/.log/jack/jackdbus.log
 - Jack server configuration is located at: ~/.config/jack/conf.xml
 - Jack server log is located at: ~/.log/jack/jackdbus.log
 - Check the audio device:
-```
+```shell
 aplay -L
 ```
 

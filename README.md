@@ -48,6 +48,13 @@ $ jack_control start
 ```shell
 $ cat ~/.log/jack/jackdbus.log
 ```
+**Hearing intermittent sound after running supercollider:**
+- Change the period of jack server to a smaller number such as 2048 or 1024.
+```shell
+jack_control dps period 2048
+jack_control stop
+jack_control start
+```
 
 ## Notes
 - Jack server configuration is located at: ~/.config/jack/conf.xml

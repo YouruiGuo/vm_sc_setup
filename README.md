@@ -71,7 +71,7 @@ $ ./start_jack.sh
 ```shell
 $ qjackctl
 ```
-- Go to the setup, change the interface from default to an available audio device, then change the frames/period to 1024 and click ok.
+- Go to the setup, change the interface from default to an available audio device and click ok.
 - Click start to start jack server.
 - If you still receive the same error, then kill all jack processes and:
 ```shell

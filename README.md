@@ -33,10 +33,10 @@ $ python runner.py
 ## Q&A
 **No sound when running the code:**
 - Go to the setting of Virtualbox machine, enable audio output under audio tab. Then, reboot the virtual box. 
-···shell
+```shell
 $ cd test
 $ vagrant reload
-···
+```
 
 **Unable to boot the server in supercollider:**
 - Open terminal and type:

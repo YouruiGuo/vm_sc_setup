@@ -21,7 +21,7 @@ $ ./init.sh
 ```
 
 - After the VM is rebooted, you can login with the password vagrant.
-- Run supercollider and the path of file is ~/soundscape_experiment/play2.scd.
+- Launch supercollider and the path of the SC file is ~/soundscape_experiment/play2.scd.
 - Put the cursor at the first line and execute it using ctrl+enter, then move the cursor to the next line and execute it with ctrl+enter.
 - Open the terminal and:
 

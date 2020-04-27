@@ -31,10 +31,10 @@ $ python runner.py
 ```
 
 ## Q&A
-> No sound when running the code:
+** No sound when running the code: **
 - Go to the setting of Virtualbox machine, enable audio output under audio tab. Then, reboot the virtual box. 
 
-> Unable to boot the server in supercollider:
+** Unable to boot the server in supercollider: **
 - Open terminal and type:
 ```shell
 $ ps aux | grep jack
@@ -54,6 +54,6 @@ $ cat ~/.log/jack/jackdbus.log
 - Jack server log is located at: ~/.log/jack/jackdbus.log
 - Check the audio device:
 ```shell
-aplay -L
+$ aplay -L
 ```
 

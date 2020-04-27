@@ -1,4 +1,4 @@
-
+#README
 ## Clone
 
 - Clone this repo to your local machine using `https://github.com/YouruiGuo/vm_sc_setup.git`
@@ -18,11 +18,10 @@ $ ./init.sh
 
 - After the VM is rebooted, you can login with the password vagrant.
 - Run supercollider and the path of file is ~/soundscape_experiment/play2.scd.
-- Put the cursor at the first line and execute it using ctrl+enter, then move the cursor to the next line and execute with ctrl+enter.
+- Put the cursor at the first line and execute it using ctrl+enter, then move the cursor to the next line and execute it with ctrl+enter.
 - Open the terminal and:
 
 ```shell
-$ jack_control start
 $ cd ~/soundscape_experiment
 $ python runner.py
 ```

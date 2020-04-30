@@ -2,10 +2,11 @@
 
 ## VM Instructions
 - Go to the [google docs](https://docs.google.com/document/d/1_vN4dZKeJf3qKW1geNTR86WyC1Fm9RoV64LbOH2xkro/edit?usp=sharing)
+- If everything works after finishing the VM instruction, you don't need to follow the next steps.
 
 ## Clone
 
-- Clone this repo to your local machine using `https://github.com/YouruiGuo/vm_sc_setup.git`
+- Clone this repo to your local machine.
 ```shell
 $ git clone https://github.com/YouruiGuo/vm_sc_setup.git
 $ cd vm_sc_setup
@@ -13,7 +14,7 @@ $ cd vm_sc_setup
 
 ## Setup
 
-- Run the script init.sh. For mac,
+- Run the script. For mac,
 ```shell
 $ chmod u+x mac_init.sh
 $ ./mac_init.sh
@@ -30,7 +31,7 @@ $ ./init.sh
 $ ./start_jack.sh
 ```
 - Launch supercollider and the path of the SC file is ~/soundscape_experiment/play2.scd.
-- Put the cursor at the first line and execute it using ctrl+enter, then move the cursor to the next line and execute it with ctrl+enter.
+- Put the cursor at the first line and execute it using CTRL + ENTER, then move the cursor to the next line and execute it with CTRL + ENTER.
 - Go to the terminal and:
 
 ```shell

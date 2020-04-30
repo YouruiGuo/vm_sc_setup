@@ -1,4 +1,8 @@
 # README
+
+## VM Instructions
+- Go to the [google docs](https://docs.google.com/document/d/1_vN4dZKeJf3qKW1geNTR86WyC1Fm9RoV64LbOH2xkro/edit?usp=sharing)
+
 ## Clone
 
 - Clone this repo to your local machine using `https://github.com/YouruiGuo/vm_sc_setup.git`

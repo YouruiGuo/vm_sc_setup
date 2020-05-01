@@ -24,10 +24,10 @@ vagrant ssh << EOF
 	jack_control start
 	cd /home/vagrant
 	#echo `aplay -L | grep CARD= -m1 | cut -d'=' -f 2`
-	echo -e '#!/bin/bash\njack_control stop\njack_control ds alsa\njack_control dps device hw:\`aplay -L | grep CARD= -m1 | cut -d'=' -f 2\`\njack_control dps rate 48000\njack_control dps nperiods 2\njack_control dps period 2048\nsleep 2\njack_control start\n' >> /home/vagrant/start_jack.sh
+	echo -e '#!/bin/bash\n#jack_control stop\njack_control ds alsa\njack_control dps device hw:\`aplay -L | grep CARD= -m1 | cut -d'=' -f 2\`\njack_control dps rate 48000\njack_control dps nperiods 2\njack_control dps period 2048\nsleep 2\njack_control start\n' >> /home/vagrant/start_jack.sh
 	chmod u+x /home/vagrant/start_jack.sh
 
-	#jack_control stop
+	jack_control stop
 	#echo '/home/vagrant/start_jack.sh' >> ~/.bashrc
 	#cd /home/vagrant/.config/jack && cp /vagrant/conf.xml ./
 	#jack_control start

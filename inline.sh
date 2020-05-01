@@ -20,7 +20,7 @@ pip install pynput keyboard numpy pyOSC gdown requests
 
 cd /home/vagrant && git clone https://github.com/YouruiGuo/soundscape_experiment.git
 cd /home/vagrant/soundscape_experiment && cp /vagrant/download.py ./ && sudo python download.py
-mkdir /home/vagrant/soundscape_experiment/audio && sudo unzip audio.zip -d /home/vagrant/soundscape_experiment/audio
+sudo unzip audio.zip -d /home/vagrant/soundscape_experiment/
 
 output="$(aplay -L | grep CARD= -m1)"
 string=$(echo $output | cut -d'=' -f 2)
